@@ -1,0 +1,15 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Clinical API",
+    "description": "Clinical API to be used to organize data and keep track of all the patiente information",
+    "version": "1.0.0"
+  },
+  "host": "localhost/3000",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "paths": {}
+}
