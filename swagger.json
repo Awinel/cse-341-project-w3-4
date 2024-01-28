@@ -5,7 +5,7 @@
     "description": "Clinical API to be used to organize data and keep track of all the patiente information",
     "version": "1.0.0"
   },
-  "host": "localhost/3000",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
     "http",
@@ -25,7 +25,7 @@
     "/patients/": {
       "get": {
         "tags": [
-          "Users"
+          "Patient"
         ],
         "description": "",
         "produces": [
@@ -38,6 +38,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Patient"
+        ],
         "description": "",
         "parameters": [
           {
@@ -46,10 +49,28 @@
             "schema": {
               "type": "object",
               "properties": {
-                "pacientInformation": {
+                "firstName": {
                   "example": "any"
                 },
-                "clinicalInformation": {
+                "lastName": {
+                  "example": "any"
+                },
+                "age": {
+                  "example": "any"
+                },
+                "phone": {
+                  "example": "any"
+                },
+                "rut": {
+                  "example": "any"
+                },
+                "id": {
+                  "example": "any"
+                },
+                "reason": {
+                  "example": "any"
+                },
+                "specification": {
                   "example": "any"
                 }
               }
@@ -72,7 +93,7 @@
     "/patients/{id}": {
       "get": {
         "tags": [
-          "Users"
+          "Patient"
         ],
         "description": "",
         "produces": [
@@ -97,7 +118,7 @@
       },
       "put": {
         "tags": [
-          "Users"
+          "Patient"
         ],
         "description": "",
         "parameters": [
@@ -121,9 +142,6 @@
                 },
                 "phone": {
                   "example": "any"
-                },
-                "ipaddress": {
-                  "example": "any"
                 }
               }
             }
@@ -146,7 +164,7 @@
       },
       "delete": {
         "tags": [
-          "Users"
+          "Patient"
         ],
         "description": "",
         "parameters": [
@@ -163,9 +181,6 @@
           },
           "400": {
             "description": "Bad Request"
-          },
-          "412": {
-            "description": "Precondition Failed"
           },
           "500": {
             "description": "Internal Server Error"

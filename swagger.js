@@ -5,7 +5,7 @@ const doc = {
         title: "Clinical API",
         description: "Clinical API to be used to organize data and keep track of all the patiente information"
     },
-    host:"localhost/3000",
+    host:"localhost:3000",
     schemes: ["http", "https"]
 };
 

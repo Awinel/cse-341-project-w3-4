@@ -10,7 +10,7 @@ const getAll = async (req, res) => {
 };
 
 const getSingle = async (req, res) => {
-    //#swagger.tags=["Users"]
+    //#swagger.tags=["Patient"]
     if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json('Must use a valid contact id to find a contact.');
       }
@@ -23,22 +23,22 @@ const getSingle = async (req, res) => {
 };
 
 const createPatient = async (req, res) => {
-    const { pacientInformation, clinicalInformation } = req.body;
+    //#swagger.tags=["Patient"]
 
     const patient = {
-        firstName: pacientInformation.firstName,
-        lastName: pacientInformation.lastName,
-        age: pacientInformation.age,
-        phone: pacientInformation.phone,
-        rut: pacientInformation.rut,
-        id: clinicalInformation.id,
-        reason: clinicalInformation.reason,
-        specification: clinicalInformation.specification
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        age: req.body.age,
+        phone: req.body.phone,
+        rut: req.body.rut,
+        id: req.body.id,
+        reason: req.body.reason,
+        specification: req.body.specification
     };
 
     const response = await mongodb.getDatabase().db().collection("patients").insertOne(patient);
     if (response.acknowledged > 0) {
-        res.status(200).send();
+        res.status(200).json("The patient has been created successfuly");
     } else {
         res.status(500).json(response.error || "Sorry, the patient could not be created. Try again.");
     }
@@ -46,7 +46,7 @@ const createPatient = async (req, res) => {
 
 
 const updatePatient = async (req, res) => {
-    //#swagger.tags=["Users"]
+    //#swagger.tags=["Patient"]
     if (!ObjectId.isValid(req.params.id)) {
         res.status(400).json('Must use a valid contact id to update a contact.');
       }
@@ -56,18 +56,17 @@ const updatePatient = async (req, res) => {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         phone: req.body.phone,
-        ipaddress: req.body.ipaddress
     };
     const response = await mongodb.getDatabase().db().collection("patients").replaceOne({_id: patientId}, patient);
     if (response.modifiedCount > 0) {
-        res.status(200).send();
+        res.status(200).json("The information has been updated");
     } else {
         res.status(500).json(response.error || "Some error occurred while updating the patient.");
     }
 }
 
 const deletePatient = async (req, res) => {
-    //#swagger.tags=["Users"]
+    //#swagger.tags=["Patient"]
 
     if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json('Must use a valid patient id to delete a patient.');
@@ -76,7 +75,7 @@ const deletePatient = async (req, res) => {
     const patientId = new ObjectId(req.params.id);
     const response = await mongodb.getDatabase().db().collection("patients").deleteOne({_id: patientId}, true);
     if (response.deletedCount > 0) {
-        res.status(200).send();
+        res.status(200).json("The patient has been deleted");
     } else {
         res.status(500).json(response.error || "Some error occurred while updating the patient.");
     }
