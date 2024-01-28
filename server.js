@@ -7,6 +7,16 @@ const mongodb = require("./data/database");
 const app = express();
 
 app.use(bodyParser.json());
+app.use((req, res, next) => {
+    res.setHeader("Access-control-Allow-Origin", "*");
+    res.setHeader(
+        "Access-Controll-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept, Z-key"
+    );
+    res.setHeader("Access-control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    next();
+});
+
 app.use("/", require("./routes"));
 
 mongodb.initDb((err) => {

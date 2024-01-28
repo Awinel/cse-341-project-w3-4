@@ -23,16 +23,19 @@ const getSingle = async (req, res) => {
 };
 
 const createPatient = async (req, res) => {
+    const { pacientInformation, clinicalInformation } = req.body;
+
     const patient = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        age: req.body.age,
-        phone: req.body.phone,
-        rut: req.body.rut,
-        id: req.body.id,
-        reason: req.body.reason,
-        specification: req.body.specification
+        firstName: pacientInformation.firstName,
+        lastName: pacientInformation.lastName,
+        age: pacientInformation.age,
+        phone: pacientInformation.phone,
+        rut: pacientInformation.rut,
+        id: clinicalInformation.id,
+        reason: clinicalInformation.reason,
+        specification: clinicalInformation.specification
     };
+
     const response = await mongodb.getDatabase().db().collection("patients").insertOne(patient);
     if (response.acknowledged > 0) {
         res.status(200).send();
@@ -40,6 +43,7 @@ const createPatient = async (req, res) => {
         res.status(500).json(response.error || "Sorry, the patient could not be created. Try again.");
     }
 }
+
 
 const updatePatient = async (req, res) => {
     //#swagger.tags=["Users"]
