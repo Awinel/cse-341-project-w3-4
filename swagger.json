@@ -25,7 +25,7 @@
     "/patients/": {
       "get": {
         "tags": [
-          "patient"
+          "Patient"
         ],
         "description": "",
         "produces": [
