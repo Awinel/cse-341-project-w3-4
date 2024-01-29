@@ -1,7 +1,7 @@
 const validator = require("../validation/patientValidation");
 
 
-const validatePatient = (req, res, next) => {
+const validate = (req, res, next) => {
   const validationRule = {
     firstName: 'required|string',
     lastName: 'required|string',
@@ -35,4 +35,4 @@ const validatePatient = (req, res, next) => {
   }
 };
 
-module.exports = validatePatient;
+module.exports = validate;
