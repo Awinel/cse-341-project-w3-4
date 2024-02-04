@@ -55,7 +55,12 @@ const updatePatient = async (req, res) => {
     const patient = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
+        age: req.body.age,
         phone: req.body.phone,
+        rut: req.body.rut,
+        id: req.body.id,
+        reason: req.body.reason,
+        specification: req.body.specification
     };
     const response = await mongodb.getDatabase().db().collection("patients").replaceOne({_id: patientId}, patient);
     if (response.modifiedCount > 0) {

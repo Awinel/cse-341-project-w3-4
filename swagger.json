@@ -140,7 +140,22 @@
                 "lastName": {
                   "example": "any"
                 },
+                "age": {
+                  "example": "any"
+                },
                 "phone": {
+                  "example": "any"
+                },
+                "rut": {
+                  "example": "any"
+                },
+                "id": {
+                  "example": "any"
+                },
+                "reason": {
+                  "example": "any"
+                },
+                "specification": {
                   "example": "any"
                 }
               }
